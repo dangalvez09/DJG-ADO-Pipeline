@@ -75,6 +75,4 @@ locals {
   ado_project_visibility  = "private"
   ado_pipeline_name_1     = "${var.prefix}-pipeline-1"
   az_resource_group_name  = "${var.prefix}${random_integer.suffix.result}"
-  az_storage_account_name = "${lower(var.prefix)}${random_integer.suffix.result}"
-
 }
