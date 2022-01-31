@@ -1,8 +1,7 @@
-#Create Azure Devops Resources for pipeline
+#Create Azure Devops Resources
 provider "azuredevops" {
   org_service_url       = var.ado_org_service_url
   personal_access_token = var.ado_pat
-  # Authentication through PAT defined with AZDO_PERSONAL_ACCESS_TOKEN 
 }
 
 # Manages a project within Azure DevOps
@@ -22,13 +21,12 @@ resource "azuredevops_project" "project" {
   }
 }
 
-# Manages a GitHub service endpoint within Azure DevOps
-resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
-  project_id            = azuredevops_project.project.id
-  service_endpoint_name = "DJG-Terraform-Project"
-
-  auth_personal {
-    personal_access_token = var.ado_github_pat
+# Creates git repository in Azure DevOps
+resource "azuredevops_git_repository" "repo" {
+  project_id = azuredevops_project.project.id
+  name       = var.ado_repo_name
+  initialization {
+    init_type = "Clean"
   }
 }
 
@@ -39,6 +37,7 @@ resource "azuredevops_resource_authorization" "auth" {
   authorized  = true
 }
 
+# Creates variable group in azure devops library
 resource "azuredevops_variable_group" "variablegroup" {
   project_id   = azuredevops_project.project.id
   name         = "terraform-djg"
@@ -46,18 +45,49 @@ resource "azuredevops_variable_group" "variablegroup" {
   allow_access = true
 
   variable {
-    name         = "az_client_id"
+    name = "az_client_id"
   }
 
   variable {
-    name         = "az_client_secret"
+    name = "az_client_secret"
   }
 
   variable {
-    name         = "az_subscription"
+    name = "az_subscription"
   }
 
   variable {
-    name         = "az_tenant"
+    name = "az_tenant"
   }
 }
+
+# Manages a GitHub service endpoint within Azure DevOps
+resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
+  project_id            = azuredevops_project.project.id
+  service_endpoint_name = "DJG-ADO-Pipeline"
+
+  auth_personal {
+    personal_access_token = var.ado_github_pat
+  }
+}
+
+/*
+resource "azuredevops_build_definition" "pipeline_1" {
+
+  depends_on = [azuredevops_resource_authorization.auth]
+  project_id = azuredevops_project.project.id
+  name       = local.ado_pipeline_name_1
+
+  ci_trigger {
+    use_yaml = true
+  }
+
+  repository {
+    repo_type             = "GitHub"
+    repo_id               = var.github_repo_name
+    branch_name           = "main"
+    yml_path              = var.ado_pipeline_yaml_path_1
+    service_connection_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
+  }
+}
+*/
