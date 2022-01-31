@@ -1,8 +1,7 @@
 #Create Azure Devops Resources for pipeline
-
 provider "azuredevops" {
-  org_service_url            = var.ado_org_service_url
-  personal_access_token      = var.ado_pat
+  org_service_url       = var.ado_org_service_url
+  personal_access_token = var.ado_pat
   # Authentication through PAT defined with AZDO_PERSONAL_ACCESS_TOKEN 
 }
 
@@ -38,4 +37,35 @@ resource "azuredevops_resource_authorization" "auth" {
   project_id  = azuredevops_project.project.id
   resource_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
   authorized  = true
+}
+
+resource "azuredevops_variable_group" "variablegroup" {
+  project_id   = azuredevops_project.project.id
+  name         = "terraform-djg"
+  description  = "Variable group for pipelines"
+  allow_access = true
+
+  variable {
+    name         = "az_client_id"
+    secret_value = var.az_client_id
+    is_secret    = true
+  }
+
+  variable {
+    name         = "az_client_secret"
+    secret_value = var.az_client_secret
+    is_secret    = true
+  }
+
+  variable {
+    name         = "az_subscription"
+    secret_value = var.az_subscription
+    is_secret    = true
+  }
+
+  variable {
+    name         = "az_tenant"
+    secret_value = var.az_tenant
+    is_secret    = true
+  }
 }
