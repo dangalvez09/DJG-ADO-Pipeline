@@ -47,25 +47,17 @@ resource "azuredevops_variable_group" "variablegroup" {
 
   variable {
     name         = "az_client_id"
-    secret_value = var.az_client_id
-    is_secret    = true
   }
 
   variable {
     name         = "az_client_secret"
-    secret_value = var.az_client_secret
-    is_secret    = true
   }
 
   variable {
     name         = "az_subscription"
-    secret_value = var.az_subscription
-    is_secret    = true
   }
 
   variable {
     name         = "az_tenant"
-    secret_value = var.az_tenant
-    is_secret    = true
   }
 }

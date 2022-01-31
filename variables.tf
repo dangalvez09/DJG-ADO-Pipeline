@@ -20,7 +20,7 @@ variable "ado_github_pat" {
   sensitive   = true
 
 }
-
+/*
 variable "az_location" {
   type    = string
   default = "eastus"
@@ -44,7 +44,7 @@ variable "az_tenant" {
   type        = string
   description = "Client ID Azure AD tenant, use env variables"
 }
-
+*/
 resource "random_integer" "suffix" {
   min = 1
   max = 100
