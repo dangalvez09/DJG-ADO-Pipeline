@@ -9,8 +9,8 @@ resource "azuredevops_project" "project" {
   name               = local.ado_project_name
   description        = local.ado_project_description
   visibility         = local.ado_project_visibility
-  version_control    = "Git"   # This will always be Git for me
-  work_item_template = "Agile" # Not sure if this matters, check back later
+  version_control    = "Git"
+  work_item_template = "Agile"
 
   features = {
     "testplans"    = "enabled"
