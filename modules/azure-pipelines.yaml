@@ -1,0 +1,12 @@
+# Azure DevOps pipeline for Azure deployment
+
+variables:
+- group: terraform-djg
+
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - DJG-ADO-Pipeline/modules
