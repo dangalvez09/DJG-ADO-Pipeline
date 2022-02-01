@@ -72,7 +72,7 @@ resource "random_integer" "suffix" {
 locals {
   ado_project_name        = "${var.prefix}-project-${random_integer.suffix.result}"
   ado_project_description = "Project for ${var.prefix}"
-  ado_project_visibility  = "private"
+  ado_project_visibility  = "public"
   ado_pipeline_name_1     = "${var.prefix}-pipeline-1"
   az_resource_group_name  = "${var.prefix}${random_integer.suffix.result}"
 }
