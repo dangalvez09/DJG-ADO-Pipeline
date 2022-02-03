@@ -1,7 +1,6 @@
 #Create Azure Devops Resources
 provider "azuredevops" {
   org_service_url       = var.ado_org_service_url
-  personal_access_token = var.ado_pat
 }
 
 # Manages a project within Azure DevOps
@@ -71,7 +70,7 @@ resource "azuredevops_serviceendpoint_github" "serviceendpoint_github" {
   }
 }
 
-/*
+
 resource "azuredevops_build_definition" "pipeline_1" {
 
   depends_on = [azuredevops_resource_authorization.auth]
@@ -90,4 +89,3 @@ resource "azuredevops_build_definition" "pipeline_1" {
     service_connection_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
   }
 }
-*/
