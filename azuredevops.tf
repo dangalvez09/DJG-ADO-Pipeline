@@ -1,6 +1,6 @@
 #Create Azure Devops Resources
 provider "azuredevops" {
-  org_service_url       = var.ado_org_service_url
+  org_service_url = var.ado_org_service_url
 }
 
 # Manages a project within Azure DevOps

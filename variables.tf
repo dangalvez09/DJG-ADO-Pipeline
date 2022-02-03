@@ -39,7 +39,7 @@ variable "ado_repo_name" {
 variable "ado_pipeline_yaml_path_1" {
   type        = string
   description = "Pipeline name"
-  default = "DJG-ADO-Pipeline/modules/azure-pipelines.yaml"
+  default     = "DJG-ADO-Pipeline/modules/azure-pipelines.yaml"
 }
 
 resource "random_integer" "suffix" {
