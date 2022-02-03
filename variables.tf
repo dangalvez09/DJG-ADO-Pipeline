@@ -2,13 +2,15 @@ variable "ado_org_service_url" {
   type        = string
   description = "Org service url for Azure DevOps"
 }
-/*
+
+/* # This is an Environment Variable
 variable "ado_pat" {
   type        = string
   description = "Personal access token for azure devops"
   sensitive   = true
 }
 */
+
 variable "prefix" {
   type        = string
   description = "Naming prefix for resources"
@@ -24,7 +26,7 @@ variable "ado_github_pat" {
 variable "github_repo_name" {
   type        = string
   description = "GitHub Repository name"
-  default     = "DJG-ADO-Pipeline"
+  default     = "dangalvez09/DJG-ADO-Pipeline"
 }
 
 variable "ado_repo_name" {
@@ -37,7 +39,7 @@ variable "ado_repo_name" {
 variable "ado_pipeline_yaml_path_1" {
   type        = string
   description = "Pipeline name"
-  default     = "DJG-ADO-Pipeline/modules/azure-pipelines.yaml"
+  default = "DJG-ADO-Pipeline/modules/azure-pipelines.yaml"
 }
 
 /*
