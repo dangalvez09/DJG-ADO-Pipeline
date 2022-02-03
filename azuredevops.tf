@@ -5,7 +5,7 @@ provider "azuredevops" {
 
 # Manages a project within Azure DevOps
 resource "azuredevops_project" "project" {
-  name               = local.ado_project_name
+  name               = "${local.ado_project_name}-project-{local.ado_test}"
   description        = local.ado_project_description
   visibility         = local.ado_project_visibility
   version_control    = "Git"
@@ -88,8 +88,4 @@ resource "azuredevops_build_definition" "pipeline_1" {
     yml_path              = var.ado_pipeline_yaml_path_1
     service_connection_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
   }
-}
-
-output "project id" {
-  value = azuredevops_project.project.id
 }
