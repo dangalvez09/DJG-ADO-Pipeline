@@ -89,3 +89,7 @@ resource "azuredevops_build_definition" "pipeline_1" {
     service_connection_id = azuredevops_serviceendpoint_github.serviceendpoint_github.id
   }
 }
+
+output "project id" {
+  value = azuredevops_project.project.id
+}

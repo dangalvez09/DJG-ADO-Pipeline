@@ -11,12 +11,6 @@ variable "ado_pat" {
 }
 */
 
-variable "prefix" {
-  type        = string
-  description = "Naming prefix for resources"
-  default     = "DJG"
-}
-
 variable "ado_github_pat" {
   type        = string
   description = "Personal access token for github"
@@ -40,6 +34,12 @@ variable "ado_pipeline_yaml_path_1" {
   type        = string
   description = "Pipeline name"
   default     = "DJG-ADO-Pipeline/modules/azure-pipelines.yaml"
+}
+
+variable "prefix" {
+  type        = string
+  description = "Naming prefix for resources"
+  default     = "DJG"
 }
 
 resource "random_integer" "suffix" {
